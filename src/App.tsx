@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import Login from "./pages/Login";
+import UserWishList from "./pages/UserWishList";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "light",
+  },
+});
+
+const App = () => (
+  <ThemeProvider theme={darkTheme}>
+    <CssBaseline />
+    <div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<UserWishList />}></Route>
+          <Route path="/:userId/wish-list" element={<UserWishList />}></Route>
+          <Route path="/:userId/profile" element={<UserWishList />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+        </Routes>
+      </Router>
     </div>
-  );
-}
+  </ThemeProvider>
+);
 
 export default App;
